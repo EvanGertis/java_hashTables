@@ -84,10 +84,10 @@ public class SimpleHashTable {
             hashedKey = (hashedKey + 1) % hashtable.length;
         }
 
-        if(stopIndex == hashedKey) {
-            return -1;
-        } else {
+        if(hashtable[hashedKey] != null && hashtable[hashedKey].mKey.equals(key)){
             return hashedKey;
+        } else {
+            return -1;
         }
     }
 
