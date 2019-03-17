@@ -60,6 +60,16 @@ public class SimpleHashTable {
 
         Employee employee = hashtable[hashedKey].mEmployee;
         hashtable[hashedKey] = null;
+        //rehashing
+
+        StoredEmployee[] oldHashTable = hashtable;
+        hashtable = new StoredEmployee[oldHashTable.length];
+        for (int i = 0; i < oldHashTable.length; i++){
+            if(oldHashTable[i] != null ){
+                put(oldHashTable[i].mKey, oldHashTable[i].mEmployee);
+            }
+        }
+
         return employee;
     }
 

@@ -18,7 +18,8 @@ public class Main {
         System.out.println("Retrieve Williams: " + hashTable.get("Williams").getFirstName() + " with id " + hashTable.get("Williams").getId());
 
         hashTable.remove("Williams");
-
+        System.out.println("Retrieve Prescott: " + hashTable.get("Prescott").getFirstName() + " with id " + hashTable.get("Prescott").getId());
+//        System.out.println("Retrieve Williams: " + hashTable.get("Williams").getFirstName() + " with id " + hashTable.get("Williams").getId());
         hashTable.printHashTable();
 
     }
