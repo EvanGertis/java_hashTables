@@ -15,7 +15,7 @@ public class Main {
         hashTable.put("Williams", royWilliams);
         hashTable.printHashTable();
 
-        System.out.println("Retrieve Gertis: " + hashTable.get("Gertis").getFirstName());
+        System.out.println("Retrieve Williams: " + hashTable.get("Williams").getFirstName());
 
     }
 }

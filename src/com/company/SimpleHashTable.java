@@ -9,28 +9,79 @@ package com.company;
 public class SimpleHashTable {
 
     //Hash table array.
-    private Employee[] hashtable;
+    private StoredEmployee[] hashtable;
 
     public SimpleHashTable(){
         //set capacity to 10 by default.
-        this.hashtable = new Employee[10];
+        this.hashtable = new StoredEmployee[10];
     }
 
     //put method, allows user to put stuff in the table.
     public void put(String key, Employee employee){
         int hashedKey = hashKey(key);
-        if(this.hashtable[hashedKey] != null){
+
+        //if occupied then commence linear probing.
+        if(occupied(hashedKey)){
+            int stopIndex = hashedKey;
+            if(hashedKey == hashtable.length -1){
+                hashedKey = 0;
+            } else {
+                hashedKey++;
+            }
+
+            while(occupied(hashedKey) && hashedKey != stopIndex){
+                hashedKey = (hashedKey + 1) % hashtable.length;
+            }
+        }
+
+        if(occupied(hashedKey)){
             System.out.println("Sorry there is already an employee in this index");
         } else {
-            this.hashtable[hashedKey] = employee;
+            this.hashtable[hashedKey] = new StoredEmployee(key, employee);
         }
 
     }
 
     //get from hashtable.
     public Employee get(String key){
+        int hashedKey = findKey(key);
+        if(hashedKey == -1){
+            return null;
+        }
+        return this.hashtable[hashedKey].mEmployee;
+    }
+
+    //check if position is occupied.
+    private boolean occupied(int index){
+        return hashtable[index] != null;
+    }
+
+    private int findKey(String key){
         int hashedKey = hashKey(key);
-        return this.hashtable[hashedKey];
+        if(hashtable[hashedKey] != null && hashtable[hashedKey].mKey.equals(key)){
+            return hashedKey;
+        }
+        int stopIndex = hashedKey;
+        if(hashedKey == hashtable.length -1){
+            hashedKey = 0;
+        } else {
+            hashedKey++;
+        }
+
+        while(hashedKey != stopIndex && hashtable[hashedKey] != null && !hashtable[hashedKey].mKey.equals(key)){
+            hashedKey = (hashedKey + 1) % hashtable.length;
+        }
+
+        if(stopIndex == hashedKey) {
+            return -1;
+        } else {
+            return hashedKey;
+        }
+    }
+
+    //hashing function.
+    private int hashKey(String key){
+        return key.length() % this.hashtable.length;
     }
 
     //print hashtable.
@@ -40,8 +91,4 @@ public class SimpleHashTable {
         }
     }
 
-    //hashing function.
-    private int hashKey(String key){
-        return key.length() % this.hashtable.length;
-    }
 }
