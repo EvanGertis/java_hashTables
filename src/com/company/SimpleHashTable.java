@@ -1,4 +1,5 @@
 package com.company;
+
 /*
  * File Name: SimpleHashTable.java
  * Author: Evan Gertis
@@ -12,16 +13,16 @@ public class SimpleHashTable {
 
     public SimpleHashTable(){
         //set capacity to 10 by default.
-        hashtable = new Employee[10];
+        this.hashtable = new Employee[10];
     }
 
     //put method, allows user to put stuff in the table.
     public void put(String key, Employee employee){
         int hashedKey = hashKey(key);
-        if(hashtable[hashedKey] != null){
+        if(this.hashtable[hashedKey] != null){
             System.out.println("Sorry there is already an employee in this index");
         } else {
-            hashtable[hashedKey] = employee;
+            this.hashtable[hashedKey] = employee;
         }
 
     }
@@ -29,11 +30,18 @@ public class SimpleHashTable {
     //get from hashtable.
     public Employee get(String key){
         int hashedKey = hashKey(key);
-        return hashtable[hashedKey];
+        return this.hashtable[hashedKey];
+    }
+
+    //print hashtable.
+    public void printHashTable(){
+        for(int i = 0; i < this.hashtable.length; i++){
+            System.out.println(this.hashtable[i]);
+        }
     }
 
     //hashing function.
     private int hashKey(String key){
-        return key.length() % hashtable.length;
+        return key.length() % this.hashtable.length;
     }
 }

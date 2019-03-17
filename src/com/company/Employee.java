@@ -26,15 +26,15 @@ public class Employee {
 
     //**GETTERS**//
     public String getFirstName() {
-        return getFirstName();
+        return this.mFirstName;
     }
 
     public String getLastName() {
-        return getLastName();
+        return this.mLastName;
     }
 
-    public String getId () {
-        return getId();
+    public int getId () {
+        return this.mId;
     }
     //**********//
 
