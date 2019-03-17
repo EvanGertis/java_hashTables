@@ -51,6 +51,18 @@ public class SimpleHashTable {
         return this.hashtable[hashedKey].mEmployee;
     }
 
+    //remove method.
+    public Employee remove(String key){
+        int hashedKey = findKey(key);
+        if(hashedKey == -1){
+            return null;
+        }
+
+        Employee employee = hashtable[hashedKey].mEmployee;
+        hashtable[hashedKey] = null;
+        return employee;
+    }
+
     //check if position is occupied.
     private boolean occupied(int index){
         return hashtable[index] != null;
