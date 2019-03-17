@@ -87,7 +87,11 @@ public class SimpleHashTable {
     //print hashtable.
     public void printHashTable(){
         for(int i = 0; i < this.hashtable.length; i++){
-            System.out.println(this.hashtable[i]);
+            if(hashtable[i] == null){
+                System.out.println("empty");
+            } else {
+                System.out.println("Position " + i + ": " + this.hashtable[i].mEmployee);
+            }
         }
     }
 
